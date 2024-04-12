@@ -5,5 +5,9 @@ st.set_page_config(
     page_icon="🌍",
 )
 
-st.write("Welcome to the World Happiness Data Explorer! This app allows you to explore and visualize the World Happiness Report data.")
+st.title("World Happiness Data Explorer Project 🌐")
+
+st.write("Welcome to the World Happiness Data Explorer Project! This project aims to provide an interactive platform for exploring and analyzing world happiness data. You can visualize and compare happiness data across different countries, years, and variables.")
+
+
 

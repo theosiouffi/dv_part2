@@ -3,7 +3,8 @@ import pandas as pd
 import altair as alt
 
 st.set_page_config(page_title="Deep Dive by Country", page_icon="🌍")
-st.title("Part 2: Country-Level Comparison of World Happiness Data")
+
+st.title("Country-Level Comparison of World Happiness Data")
 st.write(
     """In this section, you can select multiple countries and compare their variables over time. Here, 
     we also provide a correlation matrix for each selected country.
