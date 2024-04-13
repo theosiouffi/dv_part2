@@ -12,16 +12,6 @@ st.title("World Happiness Data Explorer Project 🌐")
 st.write("Welcome to the World Happiness Data Explorer Project! This project aims to provide an interactive platform for exploring and analyzing world happiness data. You can visualize and compare happiness data across different countries, years, and variables.")
 
 
-
-
-st.set_page_config(page_title="Happiness Score Overview", page_icon="🌍")
-
-st.title("Happiness Score Across ")
-st.write(
-    """In this section, you can view the happiness scores across regions and zoom out on different countries as per the level of their happiness.
-    """
-)
-
 # Read the Excel file
 df = pd.read_excel('data/Data1.xls')
 
@@ -90,11 +80,6 @@ def score_category(score):
 df['Score Category'] = df['Ladder score'].apply(score_category)
 
 """#Final Graph"""
-
-import altair as alt
-from vega_datasets import data
-import pandas as pd
-
 
 # Transform your data to include a 'name' field for tooltips
 transformed_df = df.copy()

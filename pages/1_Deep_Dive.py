@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
+
 st.set_page_config(page_title="Deep Dive by Country", page_icon="🌍")
+
+st.title("Deep Dive by Country 🌍")
+st.write("This page allows you to compare different variables for multiple countries over time. You can select the countries and the year range to visualize the data. The line graph shows the trend of the selected variable for each country over time. Additionally, you can view the correlation matrix for the selected countries to understand the relatonships between different variables.")  
 
 # Load and preprocess data
 df1 = pd.read_csv("/Users/theosiouffi/Downloads/dv_part2/data/happiness_data.csv")

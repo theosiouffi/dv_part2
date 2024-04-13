@@ -7,13 +7,15 @@ import altair as alt
 
 st.set_page_config(page_title="Covid Impact Analysis", page_icon="🦠")
 
+st.title(page_title="Covid Impact Analysis", page_icon="🦠")
+st.write("This page allows you to explore the impact of Covid-19 on happiness scores across different countries. You can filter by continent and select a specific country to analyze the changes in happiness scores and the contributing factors before and during the Covid-19 pandemic. The bar chart shows the percentage change in happiness scores during the pandemic, while the lollipop chart visualizes the evolution of happiness scores and the change in contributing factors for the selected country.")
+
 
 # Replace with this when everything is in same folder
 #precovid = pd.read_excel('Data 2017-2019.xls')
 #covid = pd.read_excel('Data 2020-2022.xls')
 
-
-# Using this one while using streamlit locally
+#Import the data from the excel files
 precovid = pd.read_excel('data/Data 2017-2019.xls')
 covid = pd.read_excel('data/Data 2020-2022.xls')
 
