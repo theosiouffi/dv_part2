@@ -2,17 +2,15 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
+
 st.set_page_config(page_title="Deep Dive by Country", page_icon="🌍")
-st.title("Part 2: Country-Level Comparison of World Happiness Data")
-st.write(
-    """In this section, you can select multiple countries and compare their variables over time. Here, 
-    we also provide a correlation matrix for each selected country.
-    """
-)
+
+st.title("Deep Dive by Country 🌍")
+st.write("This page allows you to compare different variables for multiple countries over time. You can select the countries and the year range to visualize the data. The line graph shows the trend of the selected variable for each country over time. Additionally, you can view the correlation matrix for the selected countries to understand the relatonships between different variables.")  
 
 # Load and preprocess data
-df1 = pd.read_csv("/Users/theosiouffi/Downloads/dv_part2/happiness_data.csv")
-df2 = pd.read_csv("/Users/theosiouffi/Downloads/dv_part2/2023_happy_data.csv")
+df1 = pd.read_csv("./data/happiness_data.csv")
+df2 = pd.read_csv("./data/2023_happy_data.csv")
 
 df1.drop(["Positive affect", "Negative affect", "Life Ladder"], axis=1, inplace=True)
 df1.rename(columns={'Healthy life expectancy at birth': 'Healthy life expectancy', 'Log GDP per capita': 'GDP per capita'}, inplace=True)
@@ -36,7 +34,7 @@ year_range = st.slider("Select year range", min_value=df['year'].min(), max_valu
 # Filter data based on selected countries
 df_filtered = df[df['Country name'].isin(selected_countries) & df['year'].between(year_range[0], year_range[1])]
 
-    # Visualizations: Line graph
+# Visualizations: Line graph
 st.subheader("Compare Different Country Variables Over Time")
 variable = st.selectbox("Select variable", df.columns[2:])  # Exclude 'Country name' and 'year'
 if variable and selected_countries:
