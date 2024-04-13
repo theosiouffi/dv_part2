@@ -13,9 +13,9 @@ st.write("Welcome to the World Happiness Data Explorer Project! This project aim
 
 
 # Read the Excel file
-df = pd.read_excel('data/Data1.xls')
+df = pd.read_excel('./data/Data1.xls')
 
-countries_df = pd.read_excel('data/Iso.xlsx')
+countries_df = pd.read_excel('./data/Iso.xlsx')
 countries_df = countries_df.rename(columns={'English short name': 'Country name'})
 
 df = df.merge(countries_df, on='Country name', how='left')
@@ -79,8 +79,6 @@ def score_category(score):
 
 df['Score Category'] = df['Ladder score'].apply(score_category)
 
-"""#Final Graph"""
-
 # Transform your data to include a 'name' field for tooltips
 transformed_df = df.copy()
 transformed_df['name'] = transformed_df['Country name']  # Ensure this matches your DataFrame
@@ -126,6 +124,9 @@ heatmap = alt.Chart(source).mark_geoshape().encode(
 ).project(
     type='mercator'
 )
+
+st.subheader("World Happiness Heatmap")
+st.write("This heatmap displays the happiness scores of different countries around the world. You can use the radio buttons to filter the countries based on their happiness score categories. Low scores are less than 4, medium scores are between 4 and 6, and high scores are greater than 6.")
 
 # Combine the background and heatmap with added selection
 final_chart = (background + heatmap).add_selection(

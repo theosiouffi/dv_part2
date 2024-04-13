@@ -9,8 +9,8 @@ st.title("Deep Dive by Country 🌍")
 st.write("This page allows you to compare different variables for multiple countries over time. You can select the countries and the year range to visualize the data. The line graph shows the trend of the selected variable for each country over time. Additionally, you can view the correlation matrix for the selected countries to understand the relatonships between different variables.")  
 
 # Load and preprocess data
-df1 = pd.read_csv("/Users/theosiouffi/Downloads/dv_part2/data/happiness_data.csv")
-df2 = pd.read_csv("/Users/theosiouffi/Downloads/dv_part2/data/2023_happy_data.csv")
+df1 = pd.read_csv("./data/happiness_data.csv")
+df2 = pd.read_csv("./data/2023_happy_data.csv")
 
 df1.drop(["Positive affect", "Negative affect", "Life Ladder"], axis=1, inplace=True)
 df1.rename(columns={'Healthy life expectancy at birth': 'Healthy life expectancy', 'Log GDP per capita': 'GDP per capita'}, inplace=True)

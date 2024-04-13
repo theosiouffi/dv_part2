@@ -1,9 +1,10 @@
 plotly
 streamlit
 numpy
-altair
+altair == 4.2.2
 seaborn
 pandas
 matplotlib
-openpyxl
+xlrd
 vega_datasets
+openpyxl

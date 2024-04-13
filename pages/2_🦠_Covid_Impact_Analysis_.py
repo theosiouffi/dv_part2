@@ -7,17 +7,22 @@ import altair as alt
 
 st.set_page_config(page_title="Covid Impact Analysis", page_icon="🦠")
 
-st.title(page_title="Covid Impact Analysis", page_icon="🦠")
-st.write("This page allows you to explore the impact of Covid-19 on happiness scores across different countries. You can filter by continent and select a specific country to analyze the changes in happiness scores and the contributing factors before and during the Covid-19 pandemic. The bar chart shows the percentage change in happiness scores during the pandemic, while the lollipop chart visualizes the evolution of happiness scores and the change in contributing factors for the selected country.")
-
+st.title("Covid Impact Analysis on the Happiness Score 🦠")
+st.write(
+    """In this section, we explore how the happiness score changed during covid at country level. 
+    You can filter by continent and select the country of your choice by clicking on it. Then you can analyze the overall evolution of happiness score 
+    and how each contributor changed during this period for the specific country.  
+    """
+)
 
 # Replace with this when everything is in same folder
 #precovid = pd.read_excel('Data 2017-2019.xls')
 #covid = pd.read_excel('Data 2020-2022.xls')
 
-#Import the data from the excel files
-precovid = pd.read_excel('data/Data 2017-2019.xls')
-covid = pd.read_excel('data/Data 2020-2022.xls')
+
+# Using this one while using streamlit locally
+precovid = pd.read_excel('./data/Data 2017-2019.xls')
+covid = pd.read_excel('./data/Data 2020-2022.xls')
 
 ### Format data
 
@@ -145,20 +150,12 @@ melted_df = melted_df.drop('Ladder score', axis = 1)
 
 #### Plot Starts Here
 
-st.title("Covid Impact over happiness score")
-st.write(
-    """In this section, we explored how the happiness score changed during covid at country level. 
-    You can filter by continent and select the country of your choice by clicking on it. Then you can analyze the overall evolution of happiness score 
-    and how each contributor changed during this period for the specific country.  
-    """
-)
-
 # Define the selection
-selection = alt.selection_single(fields=['Country name'], on='click', empty='none', init={'Country name': 'Malta'})
+selection = alt.selection_single(fields=['Country name'], on='click', empty='none', init={'Country name': 'Malta'}, name='Select Country')
 
 ## Continent Filter
-continent_dropdown = alt.binding_select(options=difference_country['Continent'].unique().tolist())
-continent_selection = alt.selection_single(fields=['Continent'], bind=continent_dropdown, name="Select Continent",init={'Continent': 'Europe'})
+continent_dropdown = alt.binding_select(options=difference_country['Continent'].unique().tolist(), name = 'Select Continent ')
+continent_selection = alt.selection_single(fields=['Continent'], bind=continent_dropdown, name="Select Continent ",init={'Continent': 'Europe'})
 
 # Attempt to directly use the selection in the color encoding
 percentage_change = alt.Chart(difference_country).mark_bar().encode(
@@ -227,14 +224,7 @@ change_chart = alt.Chart(change_data).transform_filter(selection).mark_bar().enc
 combined_chart = lollipop_chart | change_chart
 
 Final_chart = percentage_change & combined_chart
+
 # To display the combined chart in your environment
 
 st.altair_chart(Final_chart, use_container_width=False)
-st.write(
-    """
-    (*) Precovid: Corresponds to the period 2017-2019.
-
-    (*) Covid: Corresponds to the period 2020-2022.
-    
-    """
-)
