@@ -100,7 +100,7 @@ background = alt.Chart(source).mark_geoshape(
 ).properties(
     width=800,
     height=400
-).project('mercator')
+).project('equirectangular')
 
 # Create a radio button selection for Score Category
 radio_buttons = alt.binding_radio(options=['Low', 'Medium', 'High'], name='Score Category ')
@@ -122,10 +122,10 @@ heatmap = alt.Chart(source).mark_geoshape().encode(
     width=800,
     height=400
 ).project(
-    type='mercator'
-)
+    type='equirectangular' # Adjust projection to fit the background
+).interactive()
 
-st.subheader("World Happiness Heatmap")
+st.subheader("World Happiness Heatmap in 2023")
 st.write("This heatmap displays the happiness scores of different countries around the world. You can use the radio buttons to filter the countries based on their happiness score categories. Low scores are less than 4, medium scores are between 4 and 6, and high scores are greater than 6.")
 
 # Combine the background and heatmap with added selection
